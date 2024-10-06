@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Bills (
   userID INTEGER REFERENCES Users(userID),
   categoryID INTEGER REFERENCES Categories(categoryID),
   amount DECIMAL(15,2),
-  interval VARCHAR(15) CHECK (interval IN ('daily', 'weekly', 'monthly', 'yearly'))
+  interval VARCHAR(15) CHECK (interval IN ('daily', 'weekly', 'monthly', 'yearly')),
   intervalFrequency INTEGER,
   nextPayDay DATE
   );
