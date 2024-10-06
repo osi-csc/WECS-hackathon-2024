@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.hashers import make_password, check_password 
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, TransactionAddForm
 from .models import User, Transactions, Goals, Budgets
 import matplotlib.pyplot as plt
 from io import BytesIO
@@ -48,11 +48,15 @@ def user_logout(request):
     return redirect('home')  # Redirect to home after logout
     
 def add_expense(request):
-    expense = form.save(commit=False)
-    transaction.transactionType = 
-    transaction.categoryID=
-    transaction.amount=
-    transaction
+    if request.method == 'POST':
+        form = TransactionaddForm(request.POST)
+        if form.is_valid():
+            transaction = form.save(commit=False)  # Save form but don't commit yet
+            transaction.save()  # Now save to the database
+            messages.success(request, 'Transaction added successfully!')
+            return redirect('expense_list')  # Redirect to a page where user can see the expense list
+    else:
+        form = TransactionaddForm()
     
 def home(request):
     return render(request, 'financeapp/home.html')
