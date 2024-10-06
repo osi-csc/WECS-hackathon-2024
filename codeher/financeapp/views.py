@@ -46,8 +46,14 @@ def user_logout(request):
     logout(request)  # Clears session
     request.session.flush()  # Remove all session data, including custom flags
     return redirect('home')  # Redirect to home after logout
-
-
+    
+def add_expense(request):
+    expense = form.save(commit=False)
+    transaction.transactionType = 
+    transaction.categoryID=
+    transaction.amount=
+    transaction
+    
 def home(request):
     return render(request, 'financeapp/home.html')
 
