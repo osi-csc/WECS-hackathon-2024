@@ -1,0 +1,37 @@
+<!-- templates/financeapp/budget_chart.html -->
+<h2>Budget Usage Chart</h2>
+<canvas id="budgetChart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('budgetChart').getContext('2d');
+
+const budgetData = {
+    labels: {{ budget_data.keys|safe }},
+    datasets: [{
+        label: 'Used Amount',
+        data: {{ budget_data.values|map(attribute='used_amount')|list|safe }},
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+    },
+    {
+        label: 'Total Budget',
+        data: {{ budget_data.values|map(attribute='total_budget')|list|safe }},
+        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+        borderColor: 'rgba(153, 102, 255, 1)',
+        borderWidth: 1
+    }]
+};
+
+const budgetChart = new Chart(ctx, {
+    type: 'bar',
+    data: budgetData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>

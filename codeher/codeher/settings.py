@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'codeher.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'finance-db',     # Your database name
+        'NAME': 'personal-finance',     # Your database name
         'USER': 'postgres',           # Your database username
         'PASSWORD': 'wecs-2024-codeher',       # Your database password
         'HOST': 'database-1.c3ymi06ayn6y.ca-central-1.rds.amazonaws.com',               # Or your database host (e.g., '127.0.0.1')

@@ -1,0 +1,7 @@
+<!-- templates/financeapp/set_budget.html -->
+<h2>Set Budget</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Set Budget</button>
+</form>

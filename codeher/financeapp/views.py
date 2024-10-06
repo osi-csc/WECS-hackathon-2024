@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.hashers import make_password, check_password 
 from .forms import UserRegistrationForm, UserLoginForm
-from .models import User, Transactions, Goals, Budgets
+from .models import User
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64

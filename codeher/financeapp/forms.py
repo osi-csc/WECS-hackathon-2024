@@ -1,7 +1,7 @@
 # financeapp/forms.py
 
 from django import forms
-from .models import User, Goals, Budgets
+from .models import User
 
 class UserRegistrationForm(forms.ModelForm):
     class Meta:
