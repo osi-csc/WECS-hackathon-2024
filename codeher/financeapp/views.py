@@ -50,3 +50,5 @@ def user_logout(request):
 
 def home(request):
     return render(request, 'financeapp/home.html')
+
+

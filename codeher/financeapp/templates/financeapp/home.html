@@ -102,10 +102,6 @@
             {% if request.session.is_authenticated %}
                 <p class="thq-body-large">Hello, {{ request.session.username }}! You are logged in.</p>
                 <a href="{% url 'logout' %}" class="thq-button-filled">Logout</a>
-                <a href="{% url 'add_goal' %}" class="thq-button-outline">Add Goal</a>
-                <a href="{% url 'set_budget' %}" class="thq-button-outline">Set Budget</a>
-                <a href="{% url 'check_goal' %}" class="thq-button-outline">Check Goal</a>
-                <a href="{% url 'check_budget' %}" class="thq-button-outline">Check Budget</a>
             {% else %}
                 <p class="thq-body-large">You are not logged in. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a>.</p>
             {% endif %}
