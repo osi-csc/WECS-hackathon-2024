@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Users (
   userID SERIAL PRIMARY KEY,
-  username VARCHAR(40),
+  username VARCHAR(40) UNIQUE,
   userPassword VARCHAR(40),
   startDate DATE
 );
