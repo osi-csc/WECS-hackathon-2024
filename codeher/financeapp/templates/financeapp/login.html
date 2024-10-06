@@ -1,27 +1,92 @@
-<!-- financeapp/templates/financeapp/login.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'financeapp/style.css' %}">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-card {
+            padding: 2rem;
+            background-color: var(--dl-color-theme-accent1);
+            border-radius: var(--dl-radius-radius-cardradius);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 500px;
+        }
+
+        .login-card h3 {
+            color: var(--dl-color-theme-primary1);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .login-card input {
+            margin-bottom: 1rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--dl-radius-radius-inputradius);
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .login-card input:focus {
+            border-color: var(--dl-color-theme-primary1);
+            outline: none;
+        }
+
+        .thq-button-filled {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            background-color: var(--dl-color-theme-primary1);
+            color: var(--dl-color-theme-secondary1);
+            border: none;
+            border-radius: var(--dl-radius-radius-buttonradius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .thq-button-filled:hover {
+            background-color: var(--dl-color-theme-primary2);
+        }
+
+        .login-footer {
+            margin-top: 1rem;
+        }
+
+        .login-footer a {
+            color: var(--dl-color-theme-primary1);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>User Login</h1>
-    
-    {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Render the form fields -->
-        <button type="submit">Login</button>
-    </form>
+    <div class="thq-section-padding thq-section-max-width">
+        <div class="login-card">
+            <h3 class="thq-heading-2">Login</h3>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" class="thq-input" id="username" name="username" placeholder="Enter your username" required>
+                <input type="password" class="thq-input" id="userPassword" name="userPassword" placeholder="Enter your password" required>
+                <button type="submit" class="thq-button-filled">Login</button>
+            </form>
+            <p class="login-footer thq-body-small">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+        </div>
+    </div>
 </body>
 </html>

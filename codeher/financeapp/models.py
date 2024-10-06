@@ -7,22 +7,51 @@ class User(models.Model):
     userPassword = models.CharField(max_length=128)  # To store hashed password
     startDate = models.DateField(auto_now_add=True)
     last_login = models.DateTimeField(null=True, blank=True)  # Add the last_login field
-    
-    # If you want to make the user active or inactive
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.username
 
 class TransactionTypes(models.Model): 
     transactionTypeID = models.AutoField(primary_key=True)
     transactionTypeName = models.CharField(max_length=70)
-    
-class Categories (models.Model):
-    categoryID = model.AutoField(primary_key=true)
-    categoryName = models.CharField(max_length=50)
-    
-class Transactions(models.Model):
-    transactionID =models.AutoField(primary_key=True)
-    transactionType= models.transactionType()#foriegn key to TransactionTypeName from TransactionTypes
 
-class   
     def __str__(self):
-        return self.username
+        return self.transactionTypeName
+
+class Categories(models.Model):
+    categoryID = models.AutoField(primary_key=True)
+    categoryName = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.categoryName
+
+class Transactions(models.Model):
+    transactionID = models.AutoField(primary_key=True)
+    transactionType = models.ForeignKey(TransactionTypes, on_delete=models.CASCADE)  # Foreign key
+    # Add other necessary fields like amount, date, etc.
+
+    def __str__(self):
+        return f"Transaction {self.transactionID} - Type: {self.transactionType.transactionTypeName}"
+
+class Budgets(models.Model):
+    budgetID = models.AutoField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    categoryID = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    startDate = models.DateField()
+    endDate = models.DateField()
+
+    def __str__(self):
+        return f"Budget {self.budgetID} for {self.userID.username}"
+
+class Goals(models.Model):
+    goalID = models.AutoField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    goalName = models.CharField(max_length=70)
+    targetAmount = models.DecimalField(max_digits=15, decimal_places=2)
+    curentAmount = models.DecimalField(max_digits=15, decimal_places=2, default=0)
+    goalEndDate = models.DateField()
+
+    def __str__(self):
+        return f"Goal {self.goalID} - {self.goalName}"

@@ -1,10 +1,9 @@
-# financeapp/urls.py
-
 from django.urls import path
-from .views import register, user_login, home
+from . import views
 
 urlpatterns = [
-    path('', home, name='home'),  # Set home as the root URL
-    path('register/', register, name='register'),
-    path('login/', user_login, name='login'),  # Add login URL
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('register/', views.register, name='register'),
+    path('', views.home, name='home'),  # Assuming home is your root URL
 ]

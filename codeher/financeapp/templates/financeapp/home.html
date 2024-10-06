@@ -1,20 +1,115 @@
-<!-- financeapp/templates/financeapp/home.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'financeapp/style.css' %}">
+
+    <style>
+        /* Custom Styles for Home */
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Inter', sans-serif;
+            color: var(--dl-color-theme-neutral-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        .welcome-card {
+            padding: 2rem;
+            background-color: var(--dl-color-theme-accent1);
+            border-radius: var(--dl-radius-radius-cardradius);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+
+        .welcome-card h1 {
+            color: var(--dl-color-theme-primary1);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .welcome-card p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .welcome-card a {
+            display: inline-block;
+            margin: 0.5rem 0;
+            text-decoration: none;
+        }
+
+        .thq-button-filled, .thq-button-outline {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--dl-radius-radius-buttonradius);
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            margin: 0 10px;
+        }
+
+        .thq-button-filled {
+            background-color: var(--dl-color-theme-primary1);
+            color: var(--dl-color-theme-secondary1);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .thq-button-filled:hover {
+            background-color: var(--dl-color-theme-primary2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .thq-button-outline {
+            border: 2px solid var(--dl-color-theme-primary1);
+            color: var(--dl-color-theme-primary1);
+            background-color: transparent;
+        }
+
+        .thq-button-outline:hover {
+            background-color: var(--dl-color-theme-primary1);
+            color: var(--dl-color-theme-secondary1);
+        }
+
+        @media (max-width: 768px) {
+            .welcome-card {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .welcome-card h1 {
+                font-size: 2rem;
+            }
+
+            .thq-button-filled, .thq-button-outline {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Coderher!</h1>
-    
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}! You are logged in.</p>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <p>You are not logged in. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a>.</p>
-    {% endif %}
+    <div class="thq-section-padding thq-section-max-width">
+        <div class="welcome-card">
+            <h1 class="thq-heading-1">Girl Math: Financial Edition</h1>
+            {% if request.session.is_authenticated %}
+                <p class="thq-body-large">Hello, {{ request.session.username }}! You are logged in.</p>
+                <a href="{% url 'logout' %}" class="thq-button-filled">Logout</a>
+                <a href="{% url 'add_goal' %}" class="thq-button-outline">Add Goal</a>
+                <a href="{% url 'set_budget' %}" class="thq-button-outline">Set Budget</a>
+                <a href="{% url 'check_goal' %}" class="thq-button-outline">Check Goal</a>
+                <a href="{% url 'check_budget' %}" class="thq-button-outline">Check Budget</a>
+            {% else %}
+                <p class="thq-body-large">You are not logged in. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a>.</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

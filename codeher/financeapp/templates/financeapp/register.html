@@ -1,27 +1,92 @@
-<!-- financeapp/templates/financeapp/register.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'financeapp/style.css' %}">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .register-card {
+            padding: 2rem;
+            background-color: var(--dl-color-theme-accent1);
+            border-radius: var(--dl-radius-radius-cardradius);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 500px;
+        }
+
+        .register-card h3 {
+            color: var(--dl-color-theme-primary1);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .register-card input {
+            margin-bottom: 1rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--dl-radius-radius-inputradius);
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .register-card input:focus {
+            border-color: var(--dl-color-theme-primary1);
+            outline: none;
+        }
+
+        .thq-button-filled {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            background-color: var(--dl-color-theme-primary1);
+            color: var(--dl-color-theme-secondary1);
+            border: none;
+            border-radius: var(--dl-radius-radius-buttonradius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .thq-button-filled:hover {
+            background-color: var(--dl-color-theme-primary2);
+        }
+
+        .register-footer {
+            margin-top: 1rem;
+        }
+
+        .register-footer a {
+            color: var(--dl-color-theme-primary1);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>User Registration</h1>
-    
-    {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Render the form fields -->
-        <button type="submit">Register</button>
-    </form>
+    <div class="thq-section-padding thq-section-max-width">
+        <div class="register-card">
+            <h3 class="thq-heading-2">Register</h3>
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input type="text" class="thq-input" id="username" name="username" placeholder="Choose a username" required>
+                <input type="password" class="thq-input" id="userPassword" name="userPassword" placeholder="Choose a password" required>
+                <button type="submit" class="thq-button-filled">Register</button>
+            </form>
+            <p class="register-footer thq-body-small">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+        </div>
+    </div>
 </body>
 </html>
