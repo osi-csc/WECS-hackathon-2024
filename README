@@ -8,6 +8,14 @@ Expense tracking
       -Keywords or manual tagging
   -deletion
   -editting
+  -income (so shouldnt just be expenses)
+  -date tracking (calender)
     
   -Budget planning
+    -tracking based on expense added and deleted
+    -if overspend== give alert
+
   -Goal setting and tracing
+    -set goal
+    -track goal (can use same code as budget planning)
+    -if goal is met, give visual cue
