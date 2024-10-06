@@ -1,7 +1,7 @@
 # financeapp/forms.py
 
 from django import forms
-from .models import User, Goals, Budgets
+from .models import User, Goals, Transactions, Budgets
 
 class UserRegistrationForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,9 @@ class UserRegistrationForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     username = forms.CharField(max_length=40)
     userPassword = forms.CharField(widget=forms.PasswordInput())
+
+class TransactionAddForm(forms.ModelForm):
+    class Meta:
+        model=Transaction
+        fields=['TransactionType','Category','amount']
+
