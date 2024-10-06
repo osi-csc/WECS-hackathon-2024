@@ -2,6 +2,8 @@ WECS hackathon october 16 2024
 personal finance manager
 Expense tracking
   -input 
+    -money
+    -naming
   -categorizing
       -Keywords or manual tagging
   -deletion
