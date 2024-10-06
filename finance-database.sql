@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Users (
   userID SERIAL PRIMARY KEY,
   username VARCHAR(40),
-  password VARCHAR(40),
+  userPassword VARCHAR(40),
   startDate DATE
 );
 
@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS Categories (
 
 CREATE TABLE IF NOT EXISTS Transactions (
   transactionID SERIAL PRIMARY KEY,
-  type VARCHAR(70) REFERENCES TransactionTypes(transactionTypeName),
+  transactionType VARCHAR(70) REFERENCES TransactionTypes(transactionTypeName),
   categoryID INTEGER REFERENCES Categories(categoryID),
-  user INTEGER REFERENCES Users(userID),
+  userID INTEGER REFERENCES Users(userID),
   amount DECIMAL(15, 2),
   transactionDate TIMESTAMP,
   transactionNote TEXT
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Bills (
 CREATE TABLE IF NOT EXISTS Incomes (
   incomeID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES Users(userID),
-  source VARCHAR(70),
+  incomeSource VARCHAR(70),
   amount DECIMAL(15, 2),
   incomeDate TIMESTAMP,
   incomeNote TEXT
